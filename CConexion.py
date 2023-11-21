@@ -3,11 +3,11 @@ import mysql.connector as mysql
 class Conexion :
 
     # CONSTRUCTOR
-    def __init__(self, host="localhost", database="bdasistencia", user="root", password="gaaaa%123456") :
-        self.host = host
-        self.database = database
-        self.user = user
-        self.password = password
+    def __init__(self, host="localhost", database="bdasistencia", user="root", password="Admin%123456") :
+        self._host = host
+        self._database = database
+        self._user = user
+        self._password = password
     
     # MÉTODOS DE CLASE
     def conectar_bd(self, host, database, user, password) :
@@ -19,33 +19,32 @@ class Conexion :
         )
         return conexion
     
-    
-    def query_db(self, query) :
-        conexion = self.conectar_bd(self.host, self.database, self.user, self.password)
-        try :
-            cursor = conexion.cursor()
-            cursor.execute(query)
-            results = cursor.fetchall()
-            return results
-        
-        except mysql.Error as err:
-            print(f"Se tuvo problemas en: {err}")
-            return False
-        finally : 
-            if 'conexion' in locals() and conexion.is_connected() :
-                cursor.close()
-                conexion.close()
-                print("conexion cerrada")
-            else :
-                print("La conexión no se llego a realizar")
+    def query_db(self, type_query, query) :
+        """
+            Funcion para realizar una consulta a la base de datos que retorne un tipo de
+            Args :
+                type_query (int) : Opcion que permite escoger entre recuperar informacion o modificarla base de datos.
+                (1) recuperar información,
+                (2) consulta para modificar la base de datos
 
-    def crud_bd(self, query) :
-        conexion = self.conectar_bd(self.host, self.database, self.user, self.password)
+                query (str) : Consulta a ejecutar en la base de datos
+            Returns :
+        """
+        conexion = self.conectar_bd(self._host, self._database, self._user, self._password)
         try :
-            cursor = conexion.cursor()
-            cursor.execute(query)
-            conexion.commit()
-            print("Se agrego el registro correctamente")
+            if type_query == 1 :
+                cursor = conexion.cursor()
+                cursor.execute(query)
+                results = cursor.fetchall()
+                return results
+            elif type_query == 2 :
+                cursor = conexion.cursor()
+                cursor.execute(query)
+                conexion.commit()
+                print("El registro se agrego/modifico correctamente :)")
+            else :
+                print("Escoge una opción válida")
+                return False
         
         except mysql.Error as err:
             print(f"Se tuvo problemas en: {err}")
