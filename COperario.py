@@ -34,20 +34,20 @@ class Operario( Persona ) :
         self._usuario = "superAdmin2"
         self._password = "root2"
         
-        # self._conectar.query_db(2, f"call spInsertarOperario('{self.idOperario}', '{self.nombre}', '{self.apellido_paterno}', '{self.apellido_materno}', '{self.DNI}', '{self._usuario}', '{self._password}');")
-        print(f"call spInsertarOperario('{self.idOperario}', '{self.nombre}', '{self.apellido_paterno}', '{self.apellido_materno}', '{self._DNI}', '{self._usuario}', '{self._password}');")
+        self._conectar.query_db(2, f"call spInsertarOperario('{self.idOperario}', '{self.nombre}', '{self.apellido_paterno}', '{self.apellido_materno}', '{self._DNI}', '{self._usuario}', '{self._password}');")
+        # print(f"call spInsertarOperario('{self.idOperario}', '{self.nombre}', '{self.apellido_paterno}', '{self.apellido_materno}', '{self._DNI}', '{self._usuario}', '{self._password}');")
 
     def actualizar_operario(self, idOperario) :
 
         self.idOperario = idOperario
-        self.nombre = "Operator 3"
+        self.nombre = "Operator 2"
         self.apellido_paterno = "Obt"
         self.apellido_materno = "ToCi"
-        self.DNI = "00001001"
+        self._DNI = "00001001"
         self._usuario = "superAdmin2"
         self._password = "root2"
         # Modificar Operario mediante su ID
-        self._conectar.query_db(2, f"call spInsertarOperario('{self.idOperario}', '{self.nombre}', '{self.apellido_paterno}', '{self.apellido_materno}', '{self.DNI}', '{self._usuario}', '{self._password}');")
+        self._conectar.query_db(2, f"call spInsertarOperario('{self.idOperario}', '{self.nombre}', '{self.apellido_paterno}', '{self.apellido_materno}', '{self._DNI}', '{self._usuario}', '{self._password}');")
         
 
 
@@ -56,8 +56,7 @@ class Operario( Persona ) :
         for data in resultados :
             print(data)
     
-
 oper1 = Operario()
-oper1.registrar_operario()
-# oper1.actualizar_operario()
-# oper1.listar_operario()
+# oper1.registrar_operario()
+oper1.actualizar_operario("OP000003")
+oper1.listar_operario()

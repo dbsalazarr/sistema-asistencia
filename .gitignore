@@ -1,4 +1,8 @@
+# CARPETAS
 env/
 __pycache__/
+media/
+
+# ARCHIVOS
 *.sql
 *.mdj
