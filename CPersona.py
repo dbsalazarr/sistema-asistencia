@@ -4,4 +4,13 @@ class Persona :
         self.apellido_paterno = apellido_paterno
         self.apellido_materno = apellido_materno
         self._DNI = DNI    
-        
+    
+    # SETTERS AND GETTERS
+    @property
+    def nombre (self) : 
+        return self.nombre
+    
+    @nombre.setter
+    def set_base(self, new_nombre) :
+        self.nombre = new_nombre
+    
