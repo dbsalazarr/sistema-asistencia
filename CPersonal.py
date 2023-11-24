@@ -30,6 +30,9 @@ class Personal (Persona) :
     def registrar_personal(self) :
         pass
 
+    def obtener_personal(slef, DNI) :
+        pass
+
 persona_1 = Personal("PE000001", "Washintong", "Caceres", "Huaman", "78129301", "2023-11-15", "washash@gmail.com", "71245812", "HOME", "1234567890")
 print(persona_1._codigo_barras)
 print(persona_1._DNI)
