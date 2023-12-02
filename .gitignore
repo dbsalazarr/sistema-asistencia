@@ -1,7 +1,6 @@
 # CARPETAS
 env/
 __pycache__/
-media/
 design/
 # ARCHIVOS
 *.sql

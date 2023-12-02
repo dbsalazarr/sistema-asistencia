@@ -1,9 +1,8 @@
-from COperario import Operario
+from clases.CPersonal import Personal
 
 def main() :
-    trabajador1 = Operario()
-    trabajador1.listar_operario()
-
+    trabajador1 = Personal()
+    trabajador1.registrar_personal()
 
 if __name__ == "__main__" :
-    main() 
+    main()
