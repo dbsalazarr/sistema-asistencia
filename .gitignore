@@ -2,6 +2,7 @@
 env/
 __pycache__/
 design/
+media/code_bars
 # ARCHIVOS
 *.sql
 *.mdj
