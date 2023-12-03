@@ -3,6 +3,7 @@ env/
 __pycache__/
 design/
 media/code_bars
+clases/tk_prueba.py
 # ARCHIVOS
 *.sql
 *.mdj
