@@ -1,5 +1,6 @@
 class VentanaAsistencia:
     def __init__(self, ventana_principal):
+        
         self.ventana_principal = ventana_principal
         self.ventana_asistencia = tk.Toplevel(self.ventana_principal.ventana)
         self.ventana_asistencia.title("Asistencia")
