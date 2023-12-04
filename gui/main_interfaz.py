@@ -2,6 +2,7 @@ import tkinter as tk
 from PIL import Image, ImageTk, ImageOps
 from tkinter import ttk, messagebox
 from tkcalendar import DateEntry
+from os.path import abspath, dirname, join
 
 from tk_asistencia import VentanaAsistencia
 from tk_configuracion import VentanaConfiguracion
@@ -14,7 +15,7 @@ class Interfaz():
     def __init__(self):
         self.ventana = tk.Tk()
         self.ventana.title("Control de asistencia")
-        self.ventana.iconbitmap("D:\\Personal\\TRABAJOS\\Python trabajos\\principal.ico")
+        self.ventana.iconbitmap(join(join(dirname(dirname(abspath(__file__))), "media"), "principal.ico"))
         self.ventana.resizable()
 
         # Obtén las dimensiones de la pantalla
@@ -22,7 +23,7 @@ class Interfaz():
         #alto_pantalla = ctypes.windll.user32.GetSystemMetrics(1)
 
         # Configura la imagen de fondo
-        ruta_fondo = "D:\\Personal\\TRABAJOS\\Python trabajos\\fondo.jpg"
+        ruta_fondo = join(join(dirname(dirname(abspath(__file__))), "media"), "fondo.jpg")
         imagen_fondo = Image.open(ruta_fondo)
         imagen_fondo = ImageOps.fit(imagen_fondo, (653, 133))
         imagen_fondo = ImageTk.PhotoImage(imagen_fondo)
@@ -32,7 +33,7 @@ class Interfaz():
         etiqueta_fondo.place(relwidth=1, relheight=1)  # Establece el tamaño del Label para cubrir toda la ventana
 
         # Añade una foto en la parte superior izquierda
-        ruta_imagen = "D:\\Personal\\TRABAJOS\\Python trabajos\\74472.png"
+        ruta_imagen = join(join(dirname(dirname(abspath(__file__))), "media"), "74472.png")
         imagen_original = Image.open(ruta_imagen)
         imagen_original = ImageOps.expand(imagen_original, border=10, fill='black')  # Agrega un borde negro
         imagen_redimensionada = imagen_original.resize((150, 140))
