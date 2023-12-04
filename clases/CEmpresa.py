@@ -9,7 +9,7 @@ class Empresa:
 
     @property
     def id_empresa(self):
-        return self._id_empresa
+        return self._id_empresa 
 
     @id_empresa.setter
     def id_empresa(self, nuevo_id_empresa):
