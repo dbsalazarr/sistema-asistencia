@@ -3,6 +3,13 @@ from PIL import Image, ImageTk, ImageOps
 from tkinter import ttk, messagebox
 from tkcalendar import DateEntry
 
+from tk_asistencia import VentanaAsistencia
+from tk_configuracion import VentanaConfiguracion
+from tk_lista_estudiantes import VentanaListaEstudiantes
+from tk_matricula import VentanaMatricula
+from tk_notas_estudiante import VentanaNotasEstudiante
+from tk_ver_matricula import VentanaVerMatricula
+
 class Interfaz():
     def __init__(self):
         self.ventana = tk.Tk()
