@@ -45,3 +45,5 @@ class Cargo:
 
     def ultimo_id(self) :
         return self._conectar.query_db(1, "select MAX(idCargo) from TCargo;")[0][0]
+
+cargo1 = Cargo()
