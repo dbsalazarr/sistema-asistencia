@@ -1,4 +1,5 @@
 from os.path import abspath, dirname, join
+from clases.CMatricula import Matricula
 
 import tkinter as tk
 from PIL import Image, ImageTk, ImageOps
@@ -291,3 +292,4 @@ class VentanaMatricula():
         """
         path = join(join(dirname(dirname(abspath(__file__))), "media"), image_name)
         return path
+    

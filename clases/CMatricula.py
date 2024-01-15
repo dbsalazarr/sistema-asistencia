@@ -1,5 +1,5 @@
-from CConexion import Conexion
-
+from clases.CConexion import Conexion
+from clases.CAlumno import Alumno
 class Matricula:
     def __init__(self, id_matricula='', fecha_matricula='', importe='', descripcion='', estado='', fk_id_alumno='', fk_id_empresa='', fk_id_personal='', fk_id_ciclo=''):
         self._id_matricula = id_matricula
@@ -95,17 +95,19 @@ class Matricula:
         * El personal a cargo de realizar la matricula
         * El fk_id_ciclo del ciclo al cual se esta matriculando
         """
+        # * Registrar ALumno
+        
+        # * Registrar matricula
         id_matricula = self._conectar.query_db(1, "select fnSiguienteMatricula();")[0][0]
         query_insert = f"call spInsertarMatricula('{id_matricula}', '{fecha_matricula}', '{importe}', '{descripcion}', '{fk_id_alumno}', '{fk_id_empresa}', '{fk_id_personal}', '{fk_id_ciclo}');"
         self._conectar.query_db(2, query_insert)
-        
-        
     
     def ultimo_id(self) :
         return self._conectar.query_db(1, "select MAX(idMatricula) from TMatricula;")[0][0]
+    
 
 
-matricula1 = Matricula()
-matricula1.registrar_matricula('2023-01-05 08:30:00', 500.00, "Matrícula del ciclo 2023-1", "AL000001", "EM000001", "PE000001", "CI000001")
-print( matricula1.ultimo_id() )
+# matricula1 = Matricula()
+# matricula1.registrar_matricula('2023-01-05 08:30:00', 500.00, "Matrícula del ciclo 2023-1", "AL000001", "EM000001", "PE000001", "CI000001")
+# print( matricula1.ultimo_id() )
 
