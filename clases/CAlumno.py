@@ -11,8 +11,7 @@ class Alumno (Persona) :
         self._modalidad = modalidad
         self._turno_matricula = turno_matricula
         self._fk_id_escuela_profesional = fk_id_escuela_profesional
-        self._conectar = Conexion()
-
+        
     @property
     def id_alumno(self):
         return self._id_alumno

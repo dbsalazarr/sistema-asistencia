@@ -1,5 +1,7 @@
 from os.path import abspath, dirname, join
 from clases.CMatricula import Matricula
+from clases.CAlumno import Alumno
+from clases.CEscuelaProfesional import EscuelaProfesional
 
 import tkinter as tk
 from PIL import Image, ImageTk, ImageOps
@@ -195,7 +197,7 @@ class VentanaMatricula():
         fr_botones.pack(side="top", fill=tk.X)
 
         # Boton Guardar Alumno
-        boton_guardar = tk.Button(fr_botones, text="Guardar", **self.estilo_boton, command=lambda: self.guardar_alumno(
+        boton_guardar = tk.Button(fr_botones, text="Guardar", **self.estilo_boton, command=lambda: self.registrar_matricula(
                                                                                                         entry_nombre.get(),
                                                                                                         entry_apellidosPaternos.get(),
                                                                                                         entry_apellidosMaternos.get(),
@@ -212,29 +214,49 @@ class VentanaMatricula():
         boton_cancelar.pack(padx=10, pady=10, side="right")
 #----------------------------------------------------------------------------------------------------------------------
     #Funcionalidades 
-    def guardar_alumno(self, nombre, apellpate, apellmate, DNI, fecha, grupo, carrera, modalidad, turno):
+    def registrar_matricula(self, nombre, apellpate, apellmate, DNI, fecha, grupo, carrera, modalidad, turno):
         # Aquí puedes agregar la lógica para guardar los datos del alumno
+        # * Registro Alumno
+        estudiante = Alumno()
+        estudiante.nombre = self.entry_nombre.get()
+        estudiante.apellido_paterno = self.entry_apellidosPaternos.get()
+        estudiante.apellido_materno = self.entry_apellidosMaternos.get()
+        estudiante.DNI = self.entry_DNI.get()
+        estudiante.fecha_nacimiento = self.entry_FechaNacimiento.get()
+        estudiante.telefono_apoderado = self.telefono_apoderado.get()
+        estudiante.codigo_barras = "500102"
+        estudiante.dir_foto = "./"
+        estudiante.nombre_apoderado = self.entry_NombresPadres.get()
+        estudiante.modalidad = self.variable_modalidad.get()
+        estudiante.turno_matricula = self.variable_Turno.get()
+        estudiante.fk_id_escuela_profesional = "EP000002"
+        estudiante.registrar_alumno()
+        nombre_alumno = self.entry_nombre.get()
+        
         print(f"Nombre: {nombre} {apellpate} {apellmate}, DNI: {DNI}, Fecha de nacimiento: {fecha} guardados")
         print(f"Grupo: {grupo}, Carrera: {carrera}, Modalidad: {modalidad} y el el turno {turno}")
+        
 
     def actualizar_opciones_carrera(self, event, menu_Grupo):
         seleccion_grupo = menu_Grupo.get()
         opciones_carrera = []
-
-        if seleccion_grupo == "C":
-            opciones_carrera = ["Administración",
-                                "Contabilidad",
-                                "Economia",
-                                "Turismo"]
-        elif seleccion_grupo == "D":
-            opciones_carrera = ["Antropologia",
-                                "Arqueologia",
-                                "Ciencias de la comunicacion",
-                                "Derecho",
-                                "Educacion",
-                                "Filosofia",
-                                "Historia",
-                                "Psicologia"]
+        escuelas = EscuelaProfesional()
+        opciones_carrera = escuelas.listar_escuelas( seleccion_grupo)
+        
+        # if seleccion_grupo == "C":
+        #     opciones_carrera = ["Administración",
+        #                         "Contabilidad",
+        #                         "Economia",
+        #                         "Turismo"]
+        # elif seleccion_grupo == "D":
+        #     opciones_carrera = ["Antropologia",
+        #                         "Arqueologia",
+        #                         "Ciencias de la comunicacion",
+        #                         "Derecho",
+        #                         "Educacion",
+        #                         "Filosofia",
+        #                         "Historia",
+        #                         "Psicologia"]
 
         self.variable_carrera.set("--Seleccione")  # Reinicia el valor predeterminado
         self.menu_carrera["values"] = opciones_carrera
